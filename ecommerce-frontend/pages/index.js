@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import products from '../data/products.json'
@@ -17,14 +18,16 @@ export default function Home() {
                key={product.attributes.name}
                className={styles.product}
             >
-               <div className={styles.product__Row}>
-                  <div className={styles.product__ColImg}>
-                     <img src={fromImageToUrl(product.attributes.image.data.attributes)} alt="" />
+               <Link>
+                  <div className={styles.product__Row}>
+                     <div className={styles.product__ColImg}>
+                        <img src={fromImageToUrl(product.attributes.image.data.attributes)} alt="" />
+                     </div>
+                     <div className={styles.product__Col}>
+                        {product.attributes.name} {product.attributes.price}
+                     </div>
                   </div>
-                  <div className={styles.product__Col}>
-                     {product.attributes.name} {product.attributes.price}
-                  </div>
-               </div>
+               </Link>
             </div>
          ))}
       </div>
