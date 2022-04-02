@@ -18,15 +18,17 @@ export default function Home() {
                key={product.attributes.name}
                className={styles.product}
             >
-               <Link>
-                  <div className={styles.product__Row}>
-                     <div className={styles.product__ColImg}>
-                        <img src={fromImageToUrl(product.attributes.image.data.attributes)} alt="" />
+               <Link href={`/products/${product.attributes.slug}`}>
+                  <a>
+                     <div className={styles.product__Row}>
+                        <div className={styles.product__ColImg}>
+                           <img src={fromImageToUrl(product.attributes.image.data.attributes)} alt="" />
+                        </div>
+                        <div className={styles.product__Col}>
+                           {product.attributes.name} {product.attributes.price}
+                        </div>
                      </div>
-                     <div className={styles.product__Col}>
-                        {product.attributes.name} {product.attributes.price}
-                     </div>
-                  </div>
+                  </a>
                </Link>
             </div>
          ))}
