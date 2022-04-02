@@ -19,7 +19,7 @@ export default function Home() {
             >
                <div className={styles.product__Row}>
                   <div className={styles.product__ColImg}>
-                     <img src={fromImageToUrl()} alt="" />
+                     <img src={fromImageToUrl(product.attributes.image.data.attributes)} alt="" />
                   </div>
                   <div className={styles.product__Col}>
                      {product.attributes.name} {product.attributes.price}
