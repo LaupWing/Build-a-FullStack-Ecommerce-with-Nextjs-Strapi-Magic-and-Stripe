@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.css'
 import products from '../data/products.json'
 
 export default function Home() {
-   console.log(products)
    return (
       <div>
          <Head>
