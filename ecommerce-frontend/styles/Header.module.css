@@ -2,3 +2,9 @@
    text-align: center;
    line-height: 24px;
 }
+
+.nav{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}

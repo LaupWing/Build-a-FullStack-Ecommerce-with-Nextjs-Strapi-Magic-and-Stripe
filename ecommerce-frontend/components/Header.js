@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from '../styles/Header.module.css'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
+import AuthContext from '../context/AuthContext'
 
 const Header = () => {
    const router = useRouter()
    const isHome = router.pathname === '/'
+   const {user} = useContext(AuthContext)
 
    const goBack = (event)=>{
       event.preventDefault()
@@ -21,7 +23,22 @@ const Header = () => {
                   <h1>The Ecommerce</h1>
                </a>
             </Link>
+         </div>
 
+         <div className={styles.auth}>
+            {user ? (
+               <Link href={'/account'}>
+                  <a>
+                     {user.email}
+                  </a>
+               </Link>
+            ) : (
+               <Link href={'/login'}>
+                  <a>
+                     Log in
+                  </a>
+               </Link>
+            ) }
          </div>
       </header>
    )
