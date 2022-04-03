@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import products from '../../data/products.json'
 import { twoDecimals } from '../../utils/format'
-import { fromImageToUrl } from '../../utils/urls'
+import { API_URL, fromImageToUrl } from '../../utils/urls'
 const product = products.data[0]
 
 const Product = () =>{
@@ -31,8 +31,20 @@ const Product = () =>{
 
 export default Product
 
-// exp
+export async function getStaticPaths(){
+   const products_res = await fetch(`${API_URL}/api/products?populate=*`)
+   const products = await products_res.json()
 
-export function getStaticProps(){
+   return {
+      paths: products.map(product=>({
+         params: {
+            slug: String(product.slug)
+         }
+      })),
+      fallback: false
+   }
+}
+
+export async function getStaticProps(){
 
 }
