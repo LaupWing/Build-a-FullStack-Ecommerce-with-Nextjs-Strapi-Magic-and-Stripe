@@ -30,3 +30,9 @@ const Product = () =>{
 }
 
 export default Product
+
+// exp
+
+export function getStaticProps(){
+
+}
