@@ -1,11 +1,8 @@
 import Head from 'next/head'
-// import products from '../../data/products.json'
 import { twoDecimals } from '../../utils/format'
 import { API_URL, fromImageToUrl } from '../../utils/urls'
-// const product = products.data[0]
 
 const Product = ({product}) =>{
-   console.log(product)
    return (
       <div>
          <Head>
