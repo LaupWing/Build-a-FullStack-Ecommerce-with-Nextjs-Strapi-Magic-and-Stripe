@@ -8,24 +8,24 @@ const Product = ({product}) =>{
    console.log(product)
    return (
       <div>
-         {/* <Head>
-            {product.data.attributes.meta_title && 
-               <title>{product.data.attributes.meta_title}</title>
+         <Head>
+            {product.attributes.meta_title && 
+               <title>{product.attributes.meta_title}</title>
             }
-            {product.data.attributes.meta_description && 
-               <meta name='description' content={product.data.attributes.meta_description}/>
+            {product.attributes.meta_description && 
+               <meta name='description' content={product.attributes.meta_description}/>
             }
          </Head>
-         <h3>{product.data.attributes.name}</h3>
+         <h3>{product.attributes.name}</h3>
          <img 
-            src={fromImageToUrl(product.data.attributes.image.data.attributes)}
+            src={fromImageToUrl(product.attributes.image.data.attributes)}
          />
-         <h3>{product.data.attributes.name}</h3>
-         <p>${twoDecimals(product.data.attributes.price)}</p>
+         <h3>{product.attributes.name}</h3>
+         <p>${twoDecimals(product.attributes.price)}</p>
 
          <p>
-            {product.data.attributes.content}
-         </p> */}
+            {product.attributes.content}
+         </p>
       </div>
    )
 }
@@ -33,7 +33,7 @@ const Product = ({product}) =>{
 export default Product
 
 export async function getStaticPaths(){
-   const products_res = await fetch(`${API_URL}/api/products?populate=*`)
+   const products_res = await fetch(`${API_URL}/api/products`)
    const products = await products_res.json()
    
    return {
@@ -47,14 +47,12 @@ export async function getStaticPaths(){
 }
 
 export async function getStaticProps({params:{ slug}}){
-   console.log(slug)
-   const product_res = await fetch(`${API_URL}/api/product?slug=${slug}`)
+   const product_res = await fetch(`${API_URL}/api/products?filters[slug][$eq]=${slug}&populate=*`)
    const product = await product_res.json()
-   console.log(product.data)
    
    return{
       props:{
-         product
+         product: product.data[0]
       }
    }
 }
