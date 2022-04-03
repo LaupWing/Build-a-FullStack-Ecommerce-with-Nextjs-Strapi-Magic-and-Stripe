@@ -6,8 +6,15 @@ import {useRouter} from 'next/router'
 const Header = () => {
    const router = useRouter()
    const isHome = router.pathname === '/'
+
+   const goBack = (event)=>{
+      event.preventDefault()
+      router.back()
+   }
+
    return (
-      <header>
+      <header className={styles.nav}>
+         {!isHome && <button onClick={goBack}> {'<'} Back</button>}
          <div className={styles.title}>
             <Link href={'/'}>
                <a>
