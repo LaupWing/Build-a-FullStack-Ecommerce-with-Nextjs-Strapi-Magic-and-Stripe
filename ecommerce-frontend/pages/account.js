@@ -23,7 +23,7 @@ const Account = () => {
             <meta name='description' content='The account page, view your orders' />
          </Head>
          <h2>Account page</h2>
-
+         <p>Logged in as: {user.email}</p>
          <a href='#' onClick={logoutUser}>Logout</a>
       </div>
    )
