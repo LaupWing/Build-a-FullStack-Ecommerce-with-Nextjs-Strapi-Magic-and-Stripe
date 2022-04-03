@@ -8,8 +8,6 @@ const AuthContext = createContext()
 let magic
 
 export const AuthProvider = props =>{
-
-   
    const [user, setUser] = useState(null)
    const router = useRouter()
 
@@ -33,8 +31,22 @@ export const AuthProvider = props =>{
       }
    }
 
+   const checkUserLoggedIn = async () =>{
+      try{
+         const isLoggedIn = await magic.user.isLoggedIn()
+
+         if(isLoggedIn){
+            const {email} = await magic.user.getMetadata()
+            setUser({email})
+         }
+      }catch(e){
+         
+      }
+   }
+
    useEffect(()=>{
       magic = new Magic(MAGIC_PUBLIC_KEY)
+      checkUserLoggedIn()
    },[])
 
    return (
